@@ -455,7 +455,7 @@ export async function fetch(path) {
     throw new Error(`Timeout: ${path}`);
   }
 
-  const payload = res?.data?.data;
+  const payload = res ? (res.data ? res.data.data : undefined) : undefined;
 
   if (!payload || typeof payload !== 'object') {
     throw new Error(`Invalid response for ${path}: ${JSON.stringify(res)}`);
